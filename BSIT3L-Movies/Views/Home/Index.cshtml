@@ -3,29 +3,54 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .body{
+        font-family:Arial;
+    }
+    a{
+        text-decoration:none;
+        font-weight:bold;
+    }
+    .imgthumb{
+        width: 25rem;
+        height:12rem;
+        object-fit: cover;
+        object-position: top center;
+        border-radius:5px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+</style>
 
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Release Year</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var movie in Model)
-        {
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Movie Lists</h4>
+        <p class="card-description">
+            Movie lists this month
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+            <thead>
             <tr>
-                <td>@movie.Id</td>
-                <td ><a href = "/movies/getmovie/@movie.Id" > @movie.Name </a></td>
-                <td>@movie.Rating</td>
-                <td>@movie.ReleaseYear</td>
-                <td>@movie.Genre</td>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Release Year</th>
+                <th>Genre</th>
             </tr>
-        }
-    </tbody>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        <td ><a class="bg-success p-2 rounded-1 text-white" href = "/movies/getmovie/@movie.Id" > @movie.Name </a></td>
+                        <td>@movie.Rating</td>
+                        <td>@movie.ReleaseYear</td>
+                        <td>@movie.Genre</td>
+                        <td> <img src="@movie.Image" class="imgthumb" alt="movie_image"></td>
+                    </tr>
+                }
+            </tbody>
 </table>
+</div>
+</div>
+</div>
 
